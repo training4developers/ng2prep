@@ -20,6 +20,14 @@ export default function(config) {
 	const app = express();
 	const server = http.createServer(app);
 
+	const io = require('socket.io')(server);
+
+	io.on('connection', function (socket) {
+	  socket.on('log', function (data) {
+	    console.log(data.message);
+	  });
+	});
+
 	app.use('/api', Rest.getRouter(carData));
 	app.use('/libs', express.static(path.join(__dirname, '../node_modules')));
 	app.use(express.static(config.webServer.folder));

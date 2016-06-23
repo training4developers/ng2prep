@@ -1,0 +1,12 @@
+Day 4 Outline
+
+Http Services - create a cars service, wire up to application, promise version
+Logger Service - create a console logger, create a socket logger
+Web Sockets Observable - stock ticker
+Forms - change color radio, change make to drop down, used boolean, description textarea, update service
+Routing Params
+Component Composition
+Input & Output decorators - Events
+Views versus Components
+Add Edit/View/Create
+Service Hierarchy Components

@@ -1,8 +1,10 @@
-import { bootstrap, CACHED_TEMPLATE_PROVIDER } from '@angular/platform-browser-dynamic';
-
-
-import { AppComponent } from './app.component.ts';
+import { bootstrap } from '@angular/platform-browser-dynamic';
 import { disableDeprecatedForms, provideForms } from '@angular/forms';
+import { AppComponent } from './app.component.ts';
+import { HTTP_PROVIDERS } from '@angular/http';
+import { APP_ROUTER_PROVIDERS } from './routes.ts';
+
+//import { disableDeprecatedForms, provideForms } from '@angular/forms';
 //import { HTTP_PROVIDERS } from '@angular/http';
 //import { APP_ROUTER_PROVIDERS } from './routes.ts';
 //import { Colors } from './services/colors.ts';
@@ -16,7 +18,8 @@ import { disableDeprecatedForms, provideForms } from '@angular/forms';
 
 // bootstrap(AppComponent, [HTTP_PROVIDERS, Widgets]);
 //bootstrap(AppComponent, [APP_ROUTER_PROVIDERS, Colors]);
-bootstrap(AppComponent, [ disableDeprecatedForms(), provideForms() ]);
+//bootstrap(AppComponent, [ disableDeprecatedForms(), provideForms() ]);
+bootstrap(AppComponent, [HTTP_PROVIDERS, APP_ROUTER_PROVIDERS, disableDeprecatedForms(), provideForms()]);
 
 // enum Direction {
 // 	North,
