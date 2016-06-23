@@ -1,0 +1,65 @@
+import { Component, OnInit } from '@angular/core';
+import { ROUTER_DIRECTIVES } from '@angular/router';
+
+
+import { Pipe, PipeTransform } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Observer } from 'rxjs/Observer';
+
+@Pipe({ name: 'upperCase' })
+export class UpperCasePipe implements PipeTransform {
+
+	transform(value: string): string {
+		console.log('upper case pipe');
+		return value.toUpperCase();
+	}
+}
+
+@Pipe({
+	name: 'gt',
+	pure: false
+})
+export class GreaterThanPipe implements PipeTransform {
+	transform(values: number[], gtValue: number) {
+		console.log('greater than pipe');
+		return values.filter(n => n > gtValue);
+	}
+}
+
+
+
+@Component({
+	selector: 'main',
+	template: `<h1>Color Manager</h1>
+	<div>{{message | upperCase }}</div>
+	<input [(ngModel)]="message" type="text">
+	<div>{{nums | json}}</div>
+	<ul>
+		<li *ngFor="let n of (nums | gt:3)">{{n}}</li>
+	</ul>
+	{{observableNums | async}}
+	<router-outlet></router-outlet>`,
+	pipes: [UpperCasePipe, GreaterThanPipe],
+	styleUrls: ['css/home.css'],
+	directives: [ ROUTER_DIRECTIVES ]
+})
+export class AppComponent implements OnInit {
+
+	message: string = "Hi!";
+	nums: number[] = [1,2,3,4,5,6];
+
+	observableNums: Observable<number>;
+
+	ngOnInit() {
+		this.observableNums = Observable.create(function(observer: Observer<number>) {
+
+			let x = 0;
+
+			setInterval(function() {
+				observer.next(x++);
+			}, 1000);
+
+		})
+	}
+
+}

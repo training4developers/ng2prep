@@ -1,0 +1,73 @@
+Day 1 Outline
+
+JavaScript & TypeScript Overview
+
+Variables
+	var, const, let, class. function, enum - done
+	hoisting - done
+	scope - done
+	mutability - done
+
+Functions
+	Closures - done
+	this - done
+	call, apply & bind - done
+	Arrow Functions - done
+
+Destructuring - done
+
+Classes, Interfaces & Prototype Inheritance
+	constructor - done
+	extends - done
+	implements - done
+	properties - done
+	function properties - done
+	public/protected/private - done
+	static - done
+	abstract - done
+	annotations - done
+
+Modules
+	Import/Export - done
+	Dynamic Loading - done
+
+Types
+	Creating a type - done
+	Type Guards - 
+
+Asynchronous Programming
+	Execution Model - done
+	Promises - done
+	Observables
+	Zones
+
+Day 2 Outline
+
+Project Setup
+AppComponent
+Selector
+Template Variables
+Two-Way DataBinding
+ngFor
+Pipes
+Add Data - Form and Events
+ngIf
+Routing
+
+Day 3 Outline
+
+Styling
+Forms
+Services
+	Hierarchy
+	Providers
+Http: Promises and Observables
+
+Day 4 Outline
+Structure directives
+Attribute directives
+Unit Testing
+
+Day 5 Build Application
+
+Build a full blown crud application from scratch

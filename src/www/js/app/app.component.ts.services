@@ -1,0 +1,78 @@
+import { Component, OnInit, Injectable, Injector, OpaqueToken, Inject } from '@angular/core';
+import { ROUTER_DIRECTIVES } from '@angular/router';
+
+
+const T = new OpaqueToken('mytoken');
+
+let x = 0;
+
+interface H {
+	doIt(): void;
+}
+
+@Injectable()
+class A {
+
+	constructor() {
+		console.log(x++);
+	}
+
+	doIt() {
+		console.log('did svc A');
+	}
+}
+
+@Injectable()
+class B {
+	doIt() {
+		console.log('did svc B');
+	}
+}
+
+const C = {
+	doIt : function() {
+		console.log('did svc C');
+	}
+};
+
+const name = "Eric";
+
+const useA = true;
+
+const myFactory = (injector: Injector) => {
+	if (useA) {
+		return injector.get(A);
+		//return new A();
+	} else {
+		return new B();
+	}
+}
+
+@Component({
+	selector: 'main',
+	template: 'Hi!',
+	providers: [
+		A,
+		{ provide: B, useFactory: myFactory, deps: [Injector] },
+		{ provide: T, useValue: name }
+		//{ provide: T, useExisting: A }
+	]
+})
+export class AppComponent implements OnInit {
+
+	constructor(
+		private a: A,
+		private b: B,
+		@Inject(T) private t: string
+		//@Inject(T) private t: H
+	) {}
+
+	ngOnInit() {
+		this.a.doIt();
+		this.b.doIt();
+		console.log(this.t);
+		//this.t.doIt();
+	}
+
+
+}

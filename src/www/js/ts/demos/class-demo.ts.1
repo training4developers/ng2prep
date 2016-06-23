@@ -1,0 +1,42 @@
+interface IPerson {
+	firstName: string;
+	lastName: string;
+	getFullName(): void;
+}
+
+abstract class BasePerson implements IPerson {
+
+	constructor(public firstName: string, public lastName: string) {}
+
+	abstract getFullName(): string;
+
+}
+
+class Person extends BasePerson {
+
+	getFullName(): string {
+		return this.firstName + ' ' + this.lastName;
+	}
+}
+
+const p: IPerson = new Person('Bob','Smith');
+
+console.log(p.getFullName());
+
+class Student extends BasePerson {
+
+	constructor(public id: number, public firstName: string, public lastName: string) {
+		super(firstName, lastName);
+	}
+
+	getFullName(): string {
+		return this.id + ' ' + this.lastName + ', ' + this.firstName;
+	}
+}
+
+const s: Student = new Student(1, 'Sri', 'Movva');
+console.log(s.getFullName());
+
+const p2: IPerson = s;
+
+console.log(p2);

@@ -1,0 +1,78 @@
+import { Component, OnInit } from '@angular/core';
+import { ROUTER_DIRECTIVES } from '@angular/router';
+
+import { Observable } from 'rxjs/Observable';
+import { Subscriber } from 'rxjs/Subscriber';
+import { ISubscription } from 'rxjs/Subscription';
+
+//import 'rxjs/add/observable/foreach';
+import 'rxjs/add/observable/range';
+//let source: Observable<number> = Observable.range(1,5);
+
+let source: Observable<number> =
+	Observable.create(function(observer: Subscriber<number>) {
+
+		let x = 0;
+
+		let g = setInterval(function() {
+			observer.next(x++);
+		},1000);
+
+		setTimeout(function() {
+			clearInterval(g);
+			observer.complete();
+		}, 5000);
+
+	});
+
+	let source2: Observable<number> =
+		Observable.create(function(observer: Subscriber<number>) {
+
+			let g = setInterval(function() {
+				observer.next(-1);
+			},1000);
+
+			setTimeout(function() {
+				clearInterval(g);
+				observer.complete();
+			}, 5000);
+
+		});
+
+
+//console.dir(source);
+
+let subscription: ISubscription;
+
+source.concat(source2).forEach(function(n) {
+	console.log('n', n);
+});
+
+source.concat(source2).map(function(n) {
+	return n;
+}).subscribe(function(items) {
+	console.dir(items);
+});
+
+source2.subscribe();
+
+subscription = source.subscribe(
+    function (x) {
+			console.log('onNext: ' + x);
+			//subscription.unsubscribe();
+		},
+    function (e) { console.log('onError: ' + e.message); },
+    function () { console.log('onCompleted'); });
+
+
+
+//console.dir(subscription);
+
+@Component({
+	selector: 'main',
+	template: `<h1>Color Manager</h1>
+	<router-outlet></router-outlet>`,
+	styleUrls: ['css/home.css'],
+	directives: [ ROUTER_DIRECTIVES ]
+})
+export class AppComponent { }

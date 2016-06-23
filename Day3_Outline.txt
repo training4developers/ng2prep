@@ -1,0 +1,32 @@
+Pipes Date, Currency, Slice, Json
+Pipes on values - ellipsis pipe
+Pipes on collections - greater than, pagination
+Pipe chaining
+Pipes pure and impure
+Async Pipe
+
+Asynchronous Programming
+Promises
+Observables
+	Events
+	Number Generator
+	Convert to Promises
+Zones - simple demo
+
+Service Providers
+	UseClass
+	UseExisting
+	UseValue
+	UseFactory
+
+Opaque Tokens and Interfaces
+Optional Services
+
+Composing Components
+Hierarchy
+
+Logger Service
+
+Promise Service
+Observable Service
+Http Service - implement widgets service
